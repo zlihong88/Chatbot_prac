@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head>
+  <body>
+  
+  <h2>Predict the Churn Probability of a Bank Customer</h2>
+  
+  <div class="row">
+    <div class="column left">
+    
+      <form method="POST" action="/">
+        Credit Score:<br>
+        <input type="number" name="credit_score" value=500>
+        <br><br>
+        Country:<br>
+        <input type="text" name="country" list="country_name">
+            <datalist id="country_name">
+              <option value="France">
+              <option value="Germany">
+              <option value="Spain">
+            </datalist>
+        <br><br>
+        Age:<br>
+        <input type="number" name="age" value=40>
+        <br><br>
+        Tenure:<br>
+        <input type="number" name="tenure" value=2>
+        <br><br>
+        Balance:<br>
+        <input type="number" name="balance" value=10000>
+        <br><br>
+    </div>
+    <div class="column right">
+      <form method="POST" action="/"> 
+        Number of Products:<br>
+        <input type="text" name="products_number" list="pd_no">
+            <datalist id="pd_no">
+              <option value="1">
+              <option value="2">
+              <option value="3">
+              <option value="4">
+            </datalist>
+        <br><br>    
+        Credit Card User (1=Yes,0=No):<br>
+        <input type="text" name="credit_card" list="cc_user">
+            <datalist id="cc_user">
+              <option value="0">
+              <option value="1">
+            </datalist>
+        <br><br>
+        Active Member (1=Yes,0=No):<br>
+        <input type="text" name="active_member" list="am_state">
+            <datalist id="am_state">
+              <option value="0">
+              <option value="1">
+            </datalist>
+        <br><br>
+        Estimated Salary:<br>
+        <input type="number" name="estimated_salary" value=5000>
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
+
+      {% if pred %}
+      <p>The churn probability of this customer is {{ pred }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  </body>
+</html>
